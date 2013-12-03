@@ -1,0 +1,49 @@
+                =============================================
+                     Package "Log::Declare" Version 0.02
+                =============================================
+
+
+Abstract:
+---------
+
+This package provides a highly efficient logger which benefits from
+an almost zero performance cost on log statements when logging
+categories or namespaces are disabled.
+
+It also provides a way of logging variables through Data::Dumper
+without actually importing Data::Dumper into your packages.
+
+Copyright & License:
+--------------------
+
+This package with all its parts is
+
+Copyright (c) 2013 Companies House 
+All rights reserved.
+
+This package is free software; you can use, modify and redistribute
+it under the same terms as Perl itself, i.e., at your option, under
+the terms either of the "Artistic License" or the "GNU General Public
+License".
+
+Installation:
+-------------
+
+You can install directly from CPAN: 
+
+    install Log::Declare
+
+Alternatively, you can build and install the module yourself:
+
+    perl Makefile.PL
+    make
+    make test
+    make install
+
+Under Windows, depending on your environment,
+use "nmake" or "dmake" instead of "make".
+
+Contact Author:
+---------------
+
+Companies House <chgovuk@cpan.org>
