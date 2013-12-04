@@ -32,10 +32,10 @@
       },
       "runtime" : {
          "requires" : {
-            "Devel::Declare::Lexer" : "0.011"
+            "Devel::Declare::Lexer" : "0.014"
          }
       }
    },
    "release_status" : "stable",
-   "version" : "0.02"
+   "version" : "0.03"
 }

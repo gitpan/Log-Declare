@@ -18,5 +18,5 @@ no_index:
     - t
     - inc
 requires:
-  Devel::Declare::Lexer: 0.011
-version: 0.02
+  Devel::Declare::Lexer: 0.014
+version: 0.03

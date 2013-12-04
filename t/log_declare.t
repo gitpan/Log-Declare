@@ -6,10 +6,8 @@ use warnings;
 package Log::Declare::t;
 
 use Test::More tests => 5;
-use Test::Exception;
 
-use Readonly;
-Readonly my $CLASS => 'Log::Declare';
+my $CLASS => 'Log::Declare';
 
 ###
 #

@@ -27,7 +27,7 @@ WriteMakefile(
     'LICENSE'       => 'perl',
     'AUTHOR'        => 'Companies House <chgovuk@cpan.org>',
     'PREREQ_PM'     => {
-                           'Devel::Declare::Lexer' => 0.011
+                           'Devel::Declare::Lexer' => 0.014
                        },
     'dist'          => { COMPRESS => "gzip -9", SUFFIX => "gz" },
 #   for ActivePerl:
