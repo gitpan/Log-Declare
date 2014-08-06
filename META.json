@@ -1,10 +1,10 @@
 {
-   "abstract" : "A high performance Perl logging module",
+   "abstract" : "A high performance Perl logging module.",
    "author" : [
       "Companies House <chgovuk@cpan.org>"
    ],
-   "dynamic_config" : 1,
-   "generated_by" : "ExtUtils::MakeMaker version 6.6302, CPAN::Meta::Converter version 2.120921",
+   "dynamic_config" : 0,
+   "generated_by" : "Dist::Zilla version 5.019, CPAN::Meta::Converter version 2.141520",
    "license" : [
       "perl_5"
    ],
@@ -16,26 +16,47 @@
    "no_index" : {
       "directory" : [
          "t",
-         "inc"
+         "xt",
+         "inc",
+         "share",
+         "eg",
+         "examples"
       ]
    },
    "prereqs" : {
       "build" : {
          "requires" : {
-            "ExtUtils::MakeMaker" : "0"
+            "Module::Build" : "0.3601"
          }
       },
       "configure" : {
          "requires" : {
-            "ExtUtils::MakeMaker" : "0"
+            "Module::Build" : "0.3601"
+         }
+      },
+      "develop" : {
+         "requires" : {
+            "Test::Pod" : "1.41"
          }
       },
       "runtime" : {
          "requires" : {
-            "Devel::Declare::Lexer" : "0.014"
+            "Devel::Declare::Lexer" : "0"
          }
       }
    },
    "release_status" : "stable",
-   "version" : "0.03"
+   "resources" : {
+      "bugtracker" : {
+         "web" : "https://github.com/companieshouse/Log-Declare/issues"
+      },
+      "homepage" : "https://github.com/companieshouse/Log-Declare",
+      "repository" : {
+         "type" : "git",
+         "url" : "https://github.com/companieshouse/Log-Declare.git",
+         "web" : "https://github.com/companieshouse/Log-Declare"
+      }
+   },
+   "version" : "0.10"
 }
+

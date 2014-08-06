@@ -7,8 +7,6 @@ package Log::Declare::t;
 
 use Test::More tests => 5;
 
-my $CLASS => 'Log::Declare';
-
 ###
 #
 # This test looks a bit weird - its because we're testing *compile* time output
@@ -39,26 +37,27 @@ BEGIN {
 
     $Log::Declare::t::init_stderr = $stderr;
 }
-    
+
 test_method_import();
 test_method_parser();
 test_method_namespace();
 test_method_auto();
 test_method_capture();
-    
+
 done_testing();
 
 # =============================================================================
 
 sub test_method_import {
     subtest "Test import" => sub {
-        plan tests => 5;
+        plan tests => 6;
 
         ok(defined &{'Log::Declare::t::trace'}, "Trace level is defined");
         ok(defined &{'Log::Declare::t::debug'}, "Debug level is defined");
         ok(defined &{'Log::Declare::t::error'}, "Error level is defined");
-        ok(defined &{'Log::Declare::t::warn'}, "Warn level is defined");
-        ok(defined &{'Log::Declare::t::info'}, "Info level is defined");
+        ok(defined &{'Log::Declare::t::warn' }, "Warn level is defined");
+        ok(defined &{'Log::Declare::t::info' }, "Info level is defined");
+        ok(defined &{'Log::Declare::t::audit'}, "Audit level is defined");
     };
     return;
 }
@@ -67,7 +66,7 @@ sub test_method_import {
 
 sub test_method_parser {
     subtest "Test log statement parser" => sub {
-        plan tests => 23;
+        plan tests => 24;
 
         # Capture STDERR and reopen it attached to a variable
         open SAVEERR, ">&STDERR";
@@ -100,6 +99,11 @@ sub test_method_parser {
         info "message";
         chomp $stderr;
         like($stderr, qr/\[\w+\s+\w+\s+\d+\s\d+:\d+:\d+\s\d+\]\s\[INFO\]\s\[GENERAL\]\smessage/, 'Test info level');
+        $stderr = '';
+
+        audit "message";
+        chomp $stderr;
+        like($stderr, qr/\[\w+\s+\w+\s+\d+\s\d+:\d+:\d+\s\d+\]\s\[AUDIT\]\s\[GENERAL\]\smessage/, 'Test audit level');
         $stderr = '';
 
         my $a1 = 1;
@@ -205,10 +209,10 @@ sub test_method_parser {
         $stderr = '';
 
         # TODO this used to work with manual parsing, Devel::Declare::Lexer seems to struggle
-        info 
-            "message %s %s", 
-            $a, 
-            $b 
+        info
+            "message %s %s",
+            $a,
+            $b
             [cat1, cat2];
         chomp $stderr;
         like($stderr, qr/\[\w+\s+\w+\s+\d+\s\d+:\d+:\d+\s\d+\]\s\[INFO\]\s\[CAT1,\sCAT2\]\smessage a b/, 'Test multiple categories with multiple argument sprintf with variables and newlines');
@@ -226,6 +230,9 @@ sub test_method_parser {
 sub test_method_namespace {
     subtest "Test namespace awareness" => sub {
         plan tests => 3;
+
+        # limit %levels changes to this scope
+        local %Log::Declare::levels;
 
         # Capture STDERR and reopen it attached to a variable
         open SAVEERR, ">&STDERR";
@@ -258,9 +265,6 @@ sub test_method_namespace {
         };
         trace "message";
 
-        # Restore log level
-        $Log::Declare::levels{'trace'} = sub { 1 };
-        
         # Close the new STDERR and point it back to the original
         close STDERR;
         open STDERR, ">&SAVEERR";
@@ -293,7 +297,7 @@ sub test_method_auto {
         chomp $stderr;
         like($stderr, qr/\[\w+\s+\w+\s+\d+\s\d+:\d+:\d+\s\d+\]\s\[TRACE\]\s\[GENERAL\]\smessage\sHASH/, 'Test auto ref');
         $stderr = '';
-        
+
         # Close the new STDERR and point it back to the original
         close STDERR;
         open STDERR, ">&SAVEERR";
@@ -346,7 +350,7 @@ sub test_method_capture {
         chomp $stderr;
         like($stderr, qr/\[\w+\s+\w+\s+\d+\s\d+:\d+:\d+\s\d+\]\s\[DEBUG\]\s\[Test::Logger\]\sIntercepted/, 'Test intercepted capture');
         $stderr = '';
-        
+
         # Close the new STDERR and point it back to the original
         close STDERR;
         open STDERR, ">&SAVEERR";

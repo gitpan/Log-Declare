@@ -1,22 +1,30 @@
 ---
-abstract: 'A high performance Perl logging module'
+abstract: 'A high performance Perl logging module.'
 author:
   - 'Companies House <chgovuk@cpan.org>'
 build_requires:
-  ExtUtils::MakeMaker: 0
+  Module::Build: '0.3601'
 configure_requires:
-  ExtUtils::MakeMaker: 0
-dynamic_config: 1
-generated_by: 'ExtUtils::MakeMaker version 6.6302, CPAN::Meta::Converter version 2.120921'
+  Module::Build: '0.3601'
+dynamic_config: 0
+generated_by: 'Dist::Zilla version 5.019, CPAN::Meta::Converter version 2.141520'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
-  version: 1.4
+  version: '1.4'
 name: Log-Declare
 no_index:
   directory:
     - t
+    - xt
     - inc
+    - share
+    - eg
+    - examples
 requires:
-  Devel::Declare::Lexer: 0.014
-version: 0.03
+  Devel::Declare::Lexer: '0'
+resources:
+  bugtracker: https://github.com/companieshouse/Log-Declare/issues
+  homepage: https://github.com/companieshouse/Log-Declare
+  repository: https://github.com/companieshouse/Log-Declare.git
+version: '0.10'
